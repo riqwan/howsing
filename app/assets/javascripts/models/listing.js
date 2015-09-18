@@ -1,13 +1,13 @@
 Howsing.Listing = DS.Model.extend({
   area: DS.attr('string'),
-  bedrooms: DS.attr('integer'),
+  bedrooms: DS.attr('number'),
   furnishingState: DS.attr('string'),
   propertyType: DS.attr('string'),
-  bathrooms: DS.attr('integer'),
-  balconies: DS.attr('integer'),
-  buildUpArea: DS.attr('integer'),
-  price: DS.attr('integer'),
-  deposit: DS.attr('integer'),
+  bathrooms: DS.attr('number'),
+  balconies: DS.attr('number'),
+  buildUpArea: DS.attr('number'),
+  price: DS.attr('number'),
+  deposit: DS.attr('number'),
 });
 
 Howsing.Listing.FIXTURES = [

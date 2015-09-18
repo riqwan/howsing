@@ -1,0 +1,124 @@
+<div class="new-listing-header">
+  <h3>Edit Listing</h3>
+  <p class="text-muted">Perfect your listing.</p>
+</div>
+<hr>
+<div class="new-listing-form">
+  <form {{ action 'createListing' on="submit" }}>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="property-type">Property Type</label>
+            {{
+              view "select"
+              content=controllers.listingsNew.propertyTypes
+              optionLabelPath="content.key"
+              optionValuePath="content.value"
+              selection=propertyType
+              value=selectedPropertyType
+              class="form-control"
+              id="property-type"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="area">Location</label>
+            {{
+              input
+              value=area
+              class="form-control"
+              id="area"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="furnishing-state">Furnishing State</label>
+            {{
+              view "select"
+              content=controllers.listingsNew.furnishingStates
+              optionLabelPath="content.key"
+              optionValuePath="content.value"
+              value=model.furnishingState
+              selection=furnishingState
+              class="form-control"
+              id="furnishing-state"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            {{
+              input
+              value=bedrooms
+              class="form-control"
+              type="number"
+              id="bedrooms"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="bathrooms">Bathrooms</label>
+            {{
+              input
+              value=bathrooms
+              class="form-control"
+              type="number"
+              id="bathrooms"
+            }}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="balconies">Balconies</label>
+            {{
+              input
+              value=balconies
+              class="form-control"
+              type="number"
+              id="balconies"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="build-area">Area</label>
+            {{
+              input
+              value=buildUpArea
+              class="form-control"
+              type="number"
+              id="build-area"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            {{
+              input
+              value=price
+              class="form-control"
+              type="number"
+              id="price"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="deposit">Deposit</label>
+            {{
+              input
+              value=deposit
+              class="form-control"
+              type="number"
+              id="deposit"
+            }}
+          </div>
+
+          <div class="form-group">
+            <div class="clearfix">
+              <label>Submit Form</label>
+              <button type="submit" class="btn btn-success pull-right form-control" {{ action 'createListing' on="submit" }}>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

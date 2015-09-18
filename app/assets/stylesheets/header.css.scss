@@ -3,6 +3,16 @@
     margin-bottom: 0;
   }
 
+  .navbar-nav {
+    li > a {
+      color: #fff;
+
+      &:hover {
+        background: #fff;
+      }
+    }
+  }
+
   .navbar-default {
     border: 0;
     border-radius: 0;

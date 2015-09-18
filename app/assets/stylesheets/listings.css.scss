@@ -1,11 +1,13 @@
 .listings-container {
   border-left: 1px solid #e7e7e7;
-  height: 650px;
+  height: 640px;
   overflow-y: scroll;
 }
 
 .listing-container {
   padding: 20px;
+  height: 620px;
+  overflow-y: scroll;
 }
 
 .listing-list-item-link {

@@ -1,0 +1,124 @@
+<div class="new-listing-header">
+  <h3>Add a new listing</h3>
+  <p class="text-muted">Reach out to more than a million customers who are looking for a home.</p>
+</div>
+<hr>
+<div class="new-listing-form">
+  <form {{ action 'createListing' on="submit" }}>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="property-type">Property Type</label>
+            {{
+              view "select"
+              content=propertyTypes
+              optionLabelPath="content.key"
+              optionValuePath="content.value"
+              prompt="Select A Property Type"
+              selection=propertyType
+              class="form-control"
+              id="property-type"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="area">Location</label>
+            {{
+              input
+              value=area
+              class="form-control"
+              id="area"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="furnishing-state">Furnishing State</label>
+            {{
+              view "select"
+              content=furnishingStates
+              optionLabelPath="content.key"
+              optionValuePath="content.value"
+              prompt="Select A Furnishing State"
+              selection=furnishingState
+              class="form-control"
+              id="furnishing-state"
+            }}
+          </div>
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            {{
+              input
+              value=bedrooms
+              class="form-control"
+              type="number"
+              id="bedrooms"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="bathrooms">Bathrooms</label>
+            {{
+              input
+              value=bathrooms
+              class="form-control"
+              type="number"
+              id="bathrooms"
+            }}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="balconies">Balconies</label>
+            {{
+              input
+              value=balconies
+              class="form-control"
+              type="number"
+              id="balconies"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="build-area">Area</label>
+            {{
+              input
+              value=buildUpArea
+              class="form-control"
+              type="number"
+              id="build-area"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            {{
+              input
+              value=price
+              class="form-control"
+              type="number"
+              id="price"
+            }}
+          </div>
+
+          <div class="form-group">
+            <label for="deposit">Deposit</label>
+            {{
+              input
+              value=deposit
+              class="form-control"
+              type="number"
+              id="deposit"
+            }}
+          </div>
+
+          <div class="form-group">
+            <div class="clearfix">
+              <label>Submit Form</label>
+              <button type="submit" class="btn btn-success pull-right form-control" {{ action 'createListing' on="submit" }}>Add Listing</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
