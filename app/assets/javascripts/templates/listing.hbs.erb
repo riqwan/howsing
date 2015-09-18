@@ -9,47 +9,89 @@
 <div class="listing-specifications">
   <div class="row">
     <div class="col-md-4">
-      <p>
+      <p {{action 'editPropertyType' on='click'}}>
         <span class="text-muted">Property Type:</span>
-        <span>{{model.propertyType}}</span>
+        {{#if isPropertyTypeEditing}}
+          {{ edit-spec value=propertyType class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
+        {{else}}
+          <span>{{model.propertyType}}</span>
+        {{/if}}
       </p>
-      <p>
+
+      <p {{action 'editArea' on='click'}}>
         <span class="text-muted">Location:</span>
-        <span>{{model.area}}</span>
+        {{#if isAreaEditing}}
+          {{ edit-spec value=area class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
+        {{else}}
+          <span>{{model.area}}</span>
+        {{/if}}
       </p>
-      <p>
-        <span class="text-muted">Area:</span>
-        <span>{{model.buildUpArea}} sq.ft.</span>
+
+      <p {{action 'editFurnishingState' on='click'}}>
+        <span class="text-muted">Furnishing State:</span>
+        {{#if isFurnishingStateEditing}}
+          {{ edit-spec value=furnishingState class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
+        {{else}}
+          <span>{{model.furnishingState}}</span>
+        {{/if}}
       </p>
     </div>
 
     <div class="col-md-4">
-      <p>
+      <p {{action 'editBedrooms' on='click'}}>
         <span class="text-muted">No. of Bedrooms:</span>
-        <span>{{model.bedrooms}}</span>
+        {{#if isBedroomsEditing}}
+          {{ edit-spec value=bedrooms class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
+        {{else}}
+          <span>{{model.bedrooms}}</span>
+        {{/if}}
       </p>
-      <p>
+
+      <p {{action 'editBathrooms' on='click'}}>
         <span class="text-muted">No. of Bathrooms:</span>
-        <span>{{model.bathrooms}}</span>
+        {{#if isBathroomsEditing}}
+          {{ edit-spec value=bathrooms class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
+        {{else}}
+          <span>{{model.bathrooms}}</span>
+        {{/if}}
       </p>
-      <p>
+
+      <p {{action 'editBalconies' on='click'}}>
         <span class="text-muted">No. of Balconies:</span>
-        <span>{{model.balconies}}</span>
+        {{#if isBalconiesEditing}}
+          {{ edit-spec value=balconies class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
+        {{else}}
+          <span>{{model.balconies}}</span>
+        {{/if}}
       </p>
     </div>
 
     <div class="col-md-4">
-      <p>
+      <p {{action 'editPrice' on='click'}}>
         <span class="text-muted">Rental:</span>
-        <span>{{model.price}} per month</span>
+        {{#if isPriceEditing}}
+          {{ edit-spec value=price class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
+        {{else}}
+          <span>{{model.price}} per month</span>
+        {{/if}}
       </p>
-      <p>
+
+      <p {{action 'editDeposit' on='click'}}>
         <span class="text-muted">Deposit:</span>
-        <span>{{model.deposit}} (One time payment)</span>
+        {{#if isDepositEditing}}
+          {{ edit-spec value=deposit class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number"}}
+        {{else}}
+          <span>{{model.deposit}} (one time payment)</span>
+        {{/if}}
       </p>
-      <p>
-        <span class="text-muted">No. of Balconies:</span>
-        <span>{{model.balconies}}</span>
+
+      <p {{action 'editBuildUpArea' on='click'}}>
+        <span class="text-muted">Area:</span>
+        {{#if isBuildUpAreaEditing}}
+          {{ edit-spec value=buildUpArea class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
+        {{else}}
+          <span>{{model.buildUpArea}} sq.ft.</span>
+        {{/if}}
       </p>
     </div>
   </div>
