@@ -1,0 +1,56 @@
+<div class="listing-title">
+  <h3>{{model.bedrooms}} bedroom, {{model.furnishingState}}</h3>
+</div>
+
+<div class="listing-image">
+  <%= image_tag 'house', class: 'image-contained', height: 300 %>
+</div>
+<hr>
+<div class="listing-specifications">
+  <div class="row">
+    <div class="col-md-4">
+      <p>
+        <span class="text-muted">Property Type:</span>
+        <span>{{model.propertyType}}</span>
+      </p>
+      <p>
+        <span class="text-muted">Location:</span>
+        <span>{{model.area}}</span>
+      </p>
+      <p>
+        <span class="text-muted">Area:</span>
+        <span>{{model.buildUpArea}} sq.ft.</span>
+      </p>
+    </div>
+
+    <div class="col-md-4">
+      <p>
+        <span class="text-muted">No. of Bedrooms:</span>
+        <span>{{model.bedrooms}}</span>
+      </p>
+      <p>
+        <span class="text-muted">No. of Bathrooms:</span>
+        <span>{{model.bathrooms}}</span>
+      </p>
+      <p>
+        <span class="text-muted">No. of Balconies:</span>
+        <span>{{model.balconies}}</span>
+      </p>
+    </div>
+
+    <div class="col-md-4">
+      <p>
+        <span class="text-muted">Rental:</span>
+        <span>{{model.price}} per month</span>
+      </p>
+      <p>
+        <span class="text-muted">Deposit:</span>
+        <span>{{model.deposit}} (One time payment)</span>
+      </p>
+      <p>
+        <span class="text-muted">No. of Balconies:</span>
+        <span>{{model.balconies}}</span>
+      </p>
+    </div>
+  </div>
+</div>

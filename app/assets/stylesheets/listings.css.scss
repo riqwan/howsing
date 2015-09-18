@@ -1,0 +1,43 @@
+.listings-container {
+  border-left: 1px solid #e7e7e7;
+  height: 650px;
+  overflow-y: scroll;
+}
+
+.listing-container {
+  padding: 20px;
+}
+
+.listing-list-item-link {
+  border-bottom: 1px solid #e7e7e7;
+  color: inherit;
+  display: block;
+  padding: 20px 15px;
+
+  &:hover, &:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: #7323dc;
+    color: #fff;
+    border-right: 1px solid #7323dc;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.image-contained {
+  width: 100%;
+}
+
+.specification-key {
+  text-align: left;
+}
+
+.specification-value {
+  text-align: right;
+}
