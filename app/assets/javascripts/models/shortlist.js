@@ -1,4 +1,18 @@
 Howsing.Shortlist = DS.Model.extend({
-  user: DS.belongsTo('user'),
-  listing: DS.belongsTo('user'),
+  listing: DS.belongsTo('listing', { async: true }),
 });
+
+// Howsing.Shortlist.FIXTURES = [
+//   {
+//     id: 1,
+//     listing: 1,
+//   },
+//   {
+//     id: 2,
+//     listing: 2,
+//   },
+//   {
+//     id: 3,
+//     listing: 3,
+//   },
+// ];

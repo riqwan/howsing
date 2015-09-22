@@ -53,5 +53,34 @@ Howsing.ListingController = Ember.ObjectController.extend({
       this.set('isBalconiesEditing', false);
       this.set('isFurnishingStateEditing', false);
     },
+
+    shortlistListing: function() {
+      var listing = this.get('model');
+      var shortlists = this.get('model.shortlists');
+      var shortlistsCount = Boolean(shortlists.get('length'));
+      var shortlist;
+
+      if (shortlistsCount) {
+        shortlist = shortlists.get('firstObject');
+        this.store.find('shortlist', shortlist.id).then(function(shortlist) {
+          shortlist.destroyRecord();
+        });
+      } else {
+        shortlist = this.store.createRecord('shortlist', {
+          listing: listing,
+        });
+
+        shortlist.save().then(function() {
+          console.log('Done.');
+        });
+      }
+    },
   },
+
+  isShortlisted: function(key, value) {
+    var shortlists = this.get('model.shortlists');
+    var shortlistsCount = Boolean(shortlists.get('length'));
+    debugger
+    return shortlistsCount;
+  }.property('model.shortlists.[]'),
 });

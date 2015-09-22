@@ -1,10 +1,10 @@
 <div class="listing-title">
   <div class="clearfix">
     <h3 class="pull-left">{{model.bedrooms}} bedroom, {{model.furnishingState}}</h3>
-    <button type="button" class="btn btn-default btn-shortlist pull-right">
+    <a {{bind-attr class=":btn :pull-right :btn-shortlist isShortlisted:btn-success:btn-default"}} {{action 'shortlistListing' on="click"}}>
       <span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true"></span>
       Shortlist
-    </button>
+    </a>
   </div>
 </div>
 

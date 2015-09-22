@@ -7,4 +7,9 @@ Howsing.Router.map(function() {
 
     this.route('new');
   });
+
+  this.resource('session', function() {
+    this.route('new');
+    this.route('destroy');
+  });
 });

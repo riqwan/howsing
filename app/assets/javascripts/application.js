@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery
-//= require jquery_ujs
+//= require jquery.cookie
 //= require ember
 //= require ember-data
 //= require active-model-adapter
