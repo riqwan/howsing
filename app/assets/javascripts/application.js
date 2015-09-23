@@ -17,6 +17,8 @@
 //= require ember-data
 //= require active-model-adapter
 //= require_self
+//= require ./store
+//= require ./current_user
 //= require ./howsing
 
 // for more details see: http://emberjs.com/guides/application/

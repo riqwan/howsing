@@ -9,6 +9,7 @@ Howsing.Listing = DS.Model.extend({
   price: DS.attr('number'),
   deposit: DS.attr('number'),
   shortlists: DS.hasMany('shortlist', { async: true }),
+  user: DS.belongsTo('user', { async: true }),
 });
 
 // Howsing.Listing.FIXTURES = [

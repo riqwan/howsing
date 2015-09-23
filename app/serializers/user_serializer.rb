@@ -1,5 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :token
+  embed :ids
+  attributes :id, :token, :email
+
+  has_many :shortlists
+  has_many :listings
 
   def token
     'SDFSDFSIDFSDF234'

@@ -3,14 +3,20 @@ Howsing.SessionNewController = Ember.Controller.extend({
     login: function() {
       var data = this.getProperties('username', 'password');
       var _this = this;
-      Ember.$.post('/users', data).then(function(response) {
-        _this.set('errorMessage', response.message);
-        if (response.success) {
-          _this.set('token', response.token);
-          console.log(response);
-        } else {
-          console.log(response);
-        }
+
+      return Ember.$.ajax({
+        url: '/users/login',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+          var user = _this.store.push('user', response.user);
+
+          window.location = '';
+        },
+
+        error: function(response) {
+          alert(response.body);
+        },
       });
     },
   },

@@ -13,7 +13,9 @@ class ShortlistsController < ApplicationController
 
   def create
     listing = Listing.find(params[:shortlist][:listing_id])
-    @shortlist = Shortlist.create(listing: listing)
+    user = User.find(params[:shortlist][:user_id])
+
+    @shortlist = Shortlist.create(listing: listing, user: user)
     render json: @shortlist
   end
 

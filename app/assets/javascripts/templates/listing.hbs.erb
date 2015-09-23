@@ -8,6 +8,11 @@
   </div>
 </div>
 
+{{#if currentUser}}
+  {{currentUser.id}}
+  {{model.user.id}}
+{{/if}}
+
 <div class="listing-image">
   <%= image_tag 'house', class: 'image-contained', height: 300 %>
 </div>

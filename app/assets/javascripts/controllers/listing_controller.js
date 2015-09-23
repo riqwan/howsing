@@ -68,6 +68,7 @@ Howsing.ListingController = Ember.ObjectController.extend({
       } else {
         shortlist = this.store.createRecord('shortlist', {
           listing: listing,
+          user: this.currentUser,
         });
 
         shortlist.save().then(function() {
@@ -80,7 +81,7 @@ Howsing.ListingController = Ember.ObjectController.extend({
   isShortlisted: function(key, value) {
     var shortlists = this.get('model.shortlists');
     var shortlistsCount = Boolean(shortlists.get('length'));
-    debugger
+
     return shortlistsCount;
   }.property('model.shortlists.[]'),
 });
