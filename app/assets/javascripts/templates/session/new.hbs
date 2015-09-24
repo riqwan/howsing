@@ -1,13 +1,18 @@
+<h2>Login</h2>
+<p>Your dream home is only a click away.</p>
+
 {{#if errorMessage}}
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
 <form {{action 'login' on="submit"}}>
   <div class="form-group">
-    {{view Ember.TextField value=username placeholder="Login or Email" class="form-control"}}
+    <label for="username">Username</label>
+    {{view Ember.TextField value=username placeholder="Login or Email" class="form-control" id="username"}}
   </div>
   <div class="form-group">
-    {{view Ember.TextField value=password type="password" placeholder="Password" class="form-control"}}
+    <label for="password">Password</label>
+    {{view Ember.TextField value=password type="password" placeholder="Password" class="form-control" id="password"}}
   </div>
   <button type="submit" class="btn btn-success">Login</button>
 </form>

@@ -12,6 +12,7 @@ Howsing.ListingsNewController = Ember.ObjectController.extend({
       var deposit = this.get('deposit');
 
       var listing = this.store.createRecord('listing', {
+        user: this.currentUser,
         area: area,
         furnishingState: furnishingState,
         propertyType: propertyType,

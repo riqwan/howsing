@@ -56,32 +56,51 @@ Howsing.ListingController = Ember.ObjectController.extend({
 
     shortlistListing: function() {
       var listing = this.get('model');
-      var shortlists = this.get('model.shortlists');
-      var shortlistsCount = Boolean(shortlists.get('length'));
       var shortlist;
+      var _this = this;
+      var shortlists = this.currentUser.get('shortlists').then(function(shortlists) {
+        if (Boolean(shortlists.get('length'))) {
+          console.log('Im in');
 
-      if (shortlistsCount) {
-        shortlist = shortlists.get('firstObject');
-        this.store.find('shortlist', shortlist.id).then(function(shortlist) {
-          shortlist.destroyRecord();
-        });
-      } else {
-        shortlist = this.store.createRecord('shortlist', {
-          listing: listing,
-          user: this.currentUser,
-        });
+          var shortlist = _this.store.find('shortlist', {
+            user_id: _this.currentUser.id,
+            listing_id: listing.id,
+          }).then(function(shortlists) {
+            shortlists.get('firstObject').destroyRecord().then(function() {
+              console.log('Record Destroyed.');
+            });
+          });
+        } else {
+          shortlist = _this.store.createRecord('shortlist', {
+            listing: listing,
+            user: _this.currentUser,
+          });
 
-        shortlist.save().then(function() {
-          console.log('Done.');
-        });
-      }
+          shortlist.save().then(function() {
+            console.log('Record Created.');
+          });
+        }
+      });
     },
   },
 
-  isShortlisted: function(key, value) {
-    var shortlists = this.get('model.shortlists');
-    var shortlistsCount = Boolean(shortlists.get('length'));
+  isShortlisted: function() {
+    var listing = this.get('model');
+    var shortlisted;
 
-    return shortlistsCount;
-  }.property('model.shortlists.[]'),
+    this.currentUser.get('shortlists').then(function(userShortlists) {
+      var shortlistExists = Boolean(userShortlists.get('length'));
+
+      if (shortlistExists) {
+        shortlisted = true;
+      } else {
+        shortlisted = false;
+      }
+
+      return shortlisted;
+    });
+
+    console.log(shortlisted);
+    return shortlisted;
+  },
 });

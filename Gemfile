@@ -17,6 +17,7 @@ gem 'handlebars-source', '~> 1.3.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise'
 gem 'jquery-cookie-rails'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug'

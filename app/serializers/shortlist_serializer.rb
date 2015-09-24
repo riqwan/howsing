@@ -1,3 +1,3 @@
 class ShortlistSerializer < ActiveModel::Serializer
-  attributes :id, :listing_id, :user_id
+  attributes :id, :user_id, :listing_id
 end

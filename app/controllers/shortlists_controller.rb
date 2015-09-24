@@ -1,8 +1,8 @@
 class ShortlistsController < ApplicationController
   def index
-    @listing = Listing.find(params[:id])
+    @listing = Listing.find(params[:listing_id])
     @shortlists = @listing.shortlists
-    render json: @shortlist
+    render json: @shortlists
   end
 
   def show
