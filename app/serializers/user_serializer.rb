@@ -1,11 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
   embed :ids
-  attributes :id, :token, :email
+  attributes :id, :email, :is_landlord
 
   has_many :shortlists
   has_many :listings
 
-  def token
-    'SDFSDFSIDFSDF234'
+  def is_landlord
+    object.landlord?
   end
 end

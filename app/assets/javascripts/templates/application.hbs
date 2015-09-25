@@ -9,7 +9,9 @@
 
       <ul class="nav navbar-nav navbar-right">
         {{#if currentUser}}
-          <li>{{#link-to 'listings.new'}}Add Listing{{/link-to}}</li>
+          {{#if currentUser.isLandlord }}
+            <li>{{#link-to 'listings.new'}}Add Listing{{/link-to}}</li>
+          {{/if}}
           <li>{{#link-to 'session.destroy'}}Sign Out{{/link-to}}</li>
         {{else}}
           <li>{{#link-to 'session.new'}}Sign In{{/link-to}}</li>
