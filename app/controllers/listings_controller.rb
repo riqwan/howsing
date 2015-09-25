@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(
       :user_id, :area, :property_type, :bedrooms, :furnishing_state,
-      :bathrooms, :balconies, :build_up_area, :price, :deposit, :is_shortlisted
+      :bathrooms, :balconies, :build_up_area, :price, :deposit
     )
   end
 

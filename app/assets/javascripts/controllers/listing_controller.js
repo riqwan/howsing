@@ -1,43 +1,63 @@
 Howsing.ListingController = Ember.ObjectController.extend({
   actions: {
     editPropertyType: function() {
-      this.set('isPropertyTypeEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isPropertyTypeEditing', true);
+      }
     },
 
     editArea: function() {
-      this.set('isAreaEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isAreaEditing', true);
+      }
     },
 
     editBuildUpArea: function() {
-      this.set('isBuildUpAreaEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isBuildUpAreaEditing', true);
+      }
     },
 
     editBedrooms: function() {
-      this.set('isBedroomsEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isBedroomsEditing', true);
+      }
     },
 
     editBathrooms: function() {
-      this.set('isBathroomsEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isBathroomsEditing', true);
+      }
     },
 
     editBalconies: function() {
-      this.set('isBalconiesEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isBalconiesEditing', true);
+      }
     },
 
     editPrice: function() {
-      this.set('isPriceEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isPriceEditing', true);
+      }
     },
 
     editDeposit: function() {
-      this.set('isDepositEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isDepositEditing', true);
+      }
     },
 
     editFurnishingState: function() {
-      this.set('isFurnishingStateEditing', true);
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        this.set('isFurnishingStateEditing', true);
+      }
     },
 
     saveContent: function() {
-      var listing = this.get('model');
+      if (this.model.get('user').get('id') === this.currentUser.id) {
+        var listing = this.get('model');
+      }
 
       listing.save();
 
@@ -94,7 +114,7 @@ Howsing.ListingController = Ember.ObjectController.extend({
     },
   },
 
-  isShortlisted: function(key, value){
+  isShortlisted: function() {
     return this.model.get('isShortlisted');
   }.property('model.isShortlisted'),
 });
