@@ -14,8 +14,8 @@
   </div>
   <div role="tabpanel" class="tab-pane" id="shortlisted">
     <ul class="list-unstyled">
-      {{#each listing in currentUser.shortlists}}
-        <p>s</p>
+      {{#each shortlist in currentUser.shortlists}}
+        {{howsing-listing listing=shortlist.listing}}
       {{/each}}
     </ul>
   </div>

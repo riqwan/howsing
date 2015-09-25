@@ -59,17 +59,24 @@ Howsing.ListingController = Ember.ObjectController.extend({
       var shortlist;
       var _this = this;
       var shortlists = this.currentUser.get('shortlists').then(function(shortlists) {
-        if (Boolean(shortlists.get('length'))) {
-          console.log('Im in');
+        var filteredShortlist = shortlists.filter(function(item, index, self) {
+          var userId = item.get('user').get('id');
+          var listingId = item.get('listing').get('id');
 
-          var shortlist = _this.store.find('shortlist', {
-            user_id: _this.currentUser.id,
-            listing_id: listing.id,
-          }).then(function(shortlists) {
-            shortlists.get('firstObject').destroyRecord().then(function() {
-              console.log('Record Destroyed.');
-            });
+          if (item.get('user').get('id') === _this.currentUser.id && listing.id === listingId) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+
+        if (filteredShortlist.length) {
+          filteredShortlist.get('firstObject').destroyRecord().then(function() {
+            console.log('Record Destroyed.');
           });
+
+          listing.set('isShortlisted', false);
+          listing.save();
         } else {
           shortlist = _this.store.createRecord('shortlist', {
             listing: listing,
@@ -79,28 +86,15 @@ Howsing.ListingController = Ember.ObjectController.extend({
           shortlist.save().then(function() {
             console.log('Record Created.');
           });
+
+          listing.set('isShortlisted', true);
+          listing.save();
         }
       });
     },
   },
 
-  isShortlisted: function() {
-    var listing = this.get('model');
-    var shortlisted;
-
-    this.currentUser.get('shortlists').then(function(userShortlists) {
-      var shortlistExists = Boolean(userShortlists.get('length'));
-
-      if (shortlistExists) {
-        shortlisted = true;
-      } else {
-        shortlisted = false;
-      }
-
-      return shortlisted;
-    });
-
-    console.log(shortlisted);
-    return shortlisted;
-  },
+  isShortlisted: function(key, value){
+    return this.model.get('isShortlisted');
+  }.property('model.isShortlisted'),
 });

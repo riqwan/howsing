@@ -1,7 +1,16 @@
 class ShortlistsController < ApplicationController
   def index
-    @listing = Listing.find(params[:listing_id])
-    @shortlists = @listing.shortlists
+    hash = {
+      listing_id: params[:listing_id]
+    }
+    if params[:user_id].blank?
+      @listing = Listing.find(params[:listing_id])
+      @shortlists = @listing.shortlists
+    else
+      hash[:user_id] = params[:user_id]
+      @shortlists = Shortlist.where(hash)
+    end
+
     render json: @shortlists
   end
 

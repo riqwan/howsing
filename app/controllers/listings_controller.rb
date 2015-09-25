@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
 
-    render json: @listings
+    render json: @listings, scope: current_user
   end
 
   def show
@@ -30,8 +30,12 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(
       :user_id, :area, :property_type, :bedrooms, :furnishing_state,
-      :bathrooms, :balconies, :build_up_area, :price, :deposit
+      :bathrooms, :balconies, :build_up_area, :price, :deposit, :is_shortlisted
     )
+  end
+
+  def sanitized_params
+
   end
 
   def set_listing

@@ -1,6 +1,4 @@
 Howsing.HowsingListingComponent = Ember.Component.extend({
-  color: 'red',
-
   click: function() {
     var listElement = '.listing-list-item-link';
     $(listElement).removeClass('active');
