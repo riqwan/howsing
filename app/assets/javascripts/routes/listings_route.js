@@ -3,7 +3,7 @@ Howsing.ListingsRoute = Ember.Route.extend({
     if (this.currentUser) {
       console.log('logged in, no probs');
     } else {
-      this.transitionTo('session.new');
+      this.transitionTo('login.new');
     }
   },
 

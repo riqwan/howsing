@@ -12,7 +12,7 @@ Howsing.HowsingListingComponent = Ember.Component.extend({
       topPosition = $(event.target).closest(listElement).position().top;
     }
 
-    $('.listings-container').animate({scrollTop: TopPosition});
+    $('.listings-container').animate({scrollTop: topPosition});
   },
 
   didInsertElement: function() {

@@ -1,4 +1,4 @@
-Howsing.SessionNewController = Ember.Controller.extend({
+Howsing.LoginNewController = Ember.Controller.extend({
   actions: {
     login: function() {
       var data = this.getProperties('username', 'password');

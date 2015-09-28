@@ -75,42 +75,7 @@ Howsing.ListingController = Ember.ObjectController.extend({
     },
 
     shortlistListing: function() {
-      var listing = this.get('model');
-      var shortlist;
-      var _this = this;
-      var shortlists = this.currentUser.get('shortlists').then(function(shortlists) {
-        var filteredShortlist = shortlists.filter(function(item, index, self) {
-          var userId = item.get('user').get('id');
-          var listingId = item.get('listing').get('id');
 
-          if (item.get('user').get('id') === _this.currentUser.id && listing.id === listingId) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-
-        if (filteredShortlist.length) {
-          filteredShortlist.get('firstObject').destroyRecord().then(function() {
-            console.log('Record Destroyed.');
-          });
-
-          listing.set('isShortlisted', false);
-          listing.save();
-        } else {
-          shortlist = _this.store.createRecord('shortlist', {
-            listing: listing,
-            user: _this.currentUser,
-          });
-
-          shortlist.save().then(function() {
-            console.log('Record Created.');
-          });
-
-          listing.set('isShortlisted', true);
-          listing.save();
-        }
-      });
     },
   },
 

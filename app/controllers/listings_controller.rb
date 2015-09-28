@@ -1,5 +1,7 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :ensure_landlord!, only: [:create, :update, :destroy]
 
   def index
     @listings = Listing.all
@@ -12,7 +14,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.create(listing_params)
+    @listing = current_user.listings.create(listing_params)
 
     render json: @listing
   end
@@ -34,8 +36,8 @@ class ListingsController < ApplicationController
     )
   end
 
-  def sanitized_params
-
+  def ensure_landlord!
+    current_user.landlord?
   end
 
   def set_listing
