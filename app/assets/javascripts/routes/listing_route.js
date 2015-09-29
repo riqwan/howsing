@@ -1,6 +1,6 @@
 Howsing.ListingRoute = Ember.Route.extend({
   model: function(params) {
-    return this.store.fetchById('listing', params.id);
+    return this.store.findRecord('listing', params.id, { reload: true });
   },
 
   renderTemplate: function() {

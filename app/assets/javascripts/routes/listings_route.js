@@ -8,7 +8,7 @@ Howsing.ListingsRoute = Ember.Route.extend({
   },
 
   model: function() {
-    return this.store.find('listing');
+    return this.store.findAll('listing', { reload: true });
   },
 
   renderTemplate: function() {
