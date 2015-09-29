@@ -20,7 +20,7 @@ class ListingsController < ApplicationController
   end
 
   def update
-    @listing.update_attributes(listing_params)
+    render json: @listing.update_attributes(listing_params)
   end
 
   def destroy

@@ -15,90 +15,21 @@
 <div class="listing-specifications">
   <div class="row">
     <div class="col-md-4">
-      <p {{action 'editPropertyType' on='click'}}>
-        <span class="text-muted">Property Type:</span>
-        {{#if isPropertyTypeEditing}}
-          {{ edit-spec value=propertyType class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
-        {{else}}
-          <span>{{model.propertyType}}</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editArea' on='click'}}>
-        <span class="text-muted">Location:</span>
-        {{#if isAreaEditing}}
-          {{ edit-spec value=area class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
-        {{else}}
-          <span>{{model.area}}</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editFurnishingState' on='click'}}>
-        <span class="text-muted">Furnishing State:</span>
-        {{#if isFurnishingStateEditing}}
-          {{ edit-spec value=furnishingState class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
-        {{else}}
-          <span>{{model.furnishingState}}</span>
-        {{/if}}
-      </p>
+      {{property-spec specKey="Property Type" specValue=model.propertyType unit="" saveContent='saveContent'}}
+      {{property-spec specKey="Location" specValue=model.area unit="" saveContent='saveContent'}}
+      {{property-spec specKey="Furnishing" specValue=model.furnishingState unit="" saveContent='saveContent'}}
     </div>
 
     <div class="col-md-4">
-      <p {{action 'editBedrooms' on='click'}}>
-        <span class="text-muted">No. of Bedrooms:</span>
-        {{#if isBedroomsEditing}}
-          {{ edit-spec value=bedrooms class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
-        {{else}}
-          <span>{{model.bedrooms}}</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editBathrooms' on='click'}}>
-        <span class="text-muted">No. of Bathrooms:</span>
-        {{#if isBathroomsEditing}}
-          {{ edit-spec value=bathrooms class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
-        {{else}}
-          <span>{{model.bathrooms}}</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editBalconies' on='click'}}>
-        <span class="text-muted">No. of Balconies:</span>
-        {{#if isBalconiesEditing}}
-          {{ edit-spec value=balconies class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
-        {{else}}
-          <span>{{model.balconies}}</span>
-        {{/if}}
-      </p>
+      {{property-spec specKey="Bedrooms:" specValue=model.bedrooms unit="" saveContent='saveContent'}}
+      {{property-spec specKey="Bathrooms:" specValue=model.bathrooms unit="" saveContent='saveContent'}}
+      {{property-spec specKey="Balconies" specValue=model.balconies unit="" saveContent='saveContent'}}
     </div>
 
     <div class="col-md-4">
-      <p {{action 'editPrice' on='click'}}>
-        <span class="text-muted">Rental:</span>
-        {{#if isPriceEditing}}
-          {{ edit-spec value=price class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
-        {{else}}
-          <span>{{model.price}} per month</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editDeposit' on='click'}}>
-        <span class="text-muted">Deposit:</span>
-        {{#if isDepositEditing}}
-          {{ edit-spec value=deposit class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number"}}
-        {{else}}
-          <span>{{model.deposit}} (one time payment)</span>
-        {{/if}}
-      </p>
-
-      <p {{action 'editBuildUpArea' on='click'}}>
-        <span class="text-muted">Area:</span>
-        {{#if isBuildUpAreaEditing}}
-          {{ edit-spec value=buildUpArea class="form-control" focus-out="saveContent" insert-newline="saveContent" type="number" }}
-        {{else}}
-          <span>{{model.buildUpArea}} sq.ft.</span>
-        {{/if}}
-      </p>
+      {{property-spec specKey="Rental" specValue=model.price unit="Rs" saveContent='saveContent'}}
+      {{property-spec specKey="Deposit" specValue=model.deposit unit="Rs" saveContent='saveContent'}}
+      {{property-spec specKey="Area" specValue=model.buildUpArea unit="sq.ft." saveContent='saveContent'}}
     </div>
   </div>
 </div>
