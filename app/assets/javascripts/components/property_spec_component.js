@@ -4,7 +4,6 @@ Howsing.PropertySpecComponent = Ember.Component.extend({
   actions: {
     saveContent: function() {
       this.toggleProperty('isEditing');
-
       this.sendAction('saveContent');
     },
   },

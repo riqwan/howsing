@@ -4,8 +4,4 @@ Howsing.ListingsNewRoute = Ember.Route.extend({
       this.transitionTo('listings');
     }
   },
-
-  renderTemplate: function() {
-    this.render({ outlet: 'listing' });
-  },
 });
