@@ -10,7 +10,7 @@ Howsing.Listing = DS.Model.extend({
   deposit: DS.attr('number'),
   isShortlisted: DS.attr('boolean', { default: false }),
   shortlists: DS.hasMany('shortlist', { async: true }),
-  user: DS.belongsTo('user', { async: true }),
+  user: DS.belongsTo('user'),
 });
 
 // Howsing.Listing.FIXTURES = [

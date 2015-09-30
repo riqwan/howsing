@@ -11,7 +11,9 @@ Howsing.LoginNewController = Ember.Controller.extend({
         success: function(response) {
           var user = _this.store.push('user', response.user);
 
-          window.location = '';
+          Howsing.reset();
+
+          this.transitionTo('listings');
         },
 
         error: function(response) {

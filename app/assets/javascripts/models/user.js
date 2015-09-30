@@ -1,6 +1,5 @@
 Howsing.User = DS.Model.extend({
   email: DS.attr('string'),
-  shortlists: DS.hasMany('shortlist', { async: true }),
-  listings: DS.hasMany('listing', { async: true }),
+  shortlists: DS.hasMany('shortlist'),
   isLandlord: DS.attr('boolean'),
 });

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user =  User.find(1)
+    @user =  User.find(params[:id])
 
     render json: @user
   end
