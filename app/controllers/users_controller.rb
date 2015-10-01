@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
   def login
     @user = User.find_for_database_authentication(email: params[:username])
 

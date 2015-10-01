@@ -1,4 +1,6 @@
 class ShortlistsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     hash = {
       listing_id: params[:listing_id]
