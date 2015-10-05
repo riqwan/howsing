@@ -14,16 +14,12 @@ Howsing.ListingController = Ember.ObjectController.extend({
       if (shortlist.get('checked')) {
         this.get('store').find('shortlist', shortlist.get('id')).then(function(rec) {
           rec.destroyRecord();
-          console.log('Record Destroyed.');
           _this.get('model').reload();
         });
       } else {
-        shortlist = this.store.createRecord('shortlist', {
-          listing: this.get('model'),
-        });
+        shortlist = this.store.createRecord('shortlist', { listing: this.get('model') });
 
         shortlist.save().then(function() {
-          console.log('Record Created.');
           _this.get('model').reload();
         });
       }
