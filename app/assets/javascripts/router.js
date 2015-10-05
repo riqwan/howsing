@@ -7,8 +7,6 @@ Howsing.Router.map(function() {
     this.route('new');
   });
 
-  this.resource('login', function() {
-    this.route('new');
-    this.route('destroy');
-  });
+  this.route('login');
+  this.route('logout');
 });

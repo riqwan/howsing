@@ -1,4 +1,4 @@
-Howsing.LoginDestroyRoute = Ember.Route.extend({
+Howsing.LogoutRoute = Ember.Route.extend({
   beforeModel: function() {
     return Ember.$.ajax({
       url: '/users/logout',

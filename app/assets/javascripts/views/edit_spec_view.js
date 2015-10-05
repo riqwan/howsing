@@ -3,5 +3,3 @@ Howsing.EditSepcView = Ember.TextField.extend({
     this.$().focus();
   },
 });
-
-Ember.Handlebars.helper('edit-spec', Howsing.EditSepcView);

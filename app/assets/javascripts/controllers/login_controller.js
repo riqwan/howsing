@@ -1,4 +1,4 @@
-Howsing.LoginNewController = Ember.Controller.extend({
+Howsing.LoginController = Ember.Controller.extend({
   actions: {
     login: function() {
       var data = this.getProperties('username', 'password');
@@ -11,9 +11,7 @@ Howsing.LoginNewController = Ember.Controller.extend({
         success: function(response) {
           var user = _this.store.push('user', response.user);
 
-          Howsing.reset();
-
-          this.transitionTo('listings');
+          window.location = '';
         },
 
         error: function(response) {
