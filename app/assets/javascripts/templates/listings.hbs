@@ -1,22 +1,31 @@
-<ul class="nav nav-tabs nav-justified">
-  <li><a class="active" data-toggle="tab" href="#listings">All Listings</a></li>
-  <li><a data-toggle="tab" href="#shortlisted">Shortlisted Listing</a></li>
-</ul>
-{{bootstrap-init}}
-
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="listings">
-    <ul class="list-unstyled">
-      {{#each listing in model}}
-        {{howsing-listing listing=listing}}
-      {{/each}}
-    </ul>
+<div class="col-md-8">
+  <div class="listing-container">
+    {{outlet}}
   </div>
-  <div role="tabpanel" class="tab-pane" id="shortlisted">
-    <ul class="list-unstyled">
-      {{#each shortlist in currentUser.shortlists}}
-        {{howsing-listing listing=shortlist.listing}}
-      {{/each}}
+</div>
+<div class="col-md-4">
+  <div class="listings-container">
+    <ul class="nav nav-tabs nav-justified">
+      <li><a class="active" data-toggle="tab" href="#listings">All Listings</a></li>
+      <li><a data-toggle="tab" href="#shortlisted">Shortlisted Listing</a></li>
     </ul>
+    {{bootstrap-init}}
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="listings">
+        <ul class="list-unstyled">
+          {{#each listing in model}}
+            {{howsing-listing listing=listing}}
+          {{/each}}
+        </ul>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="shortlisted">
+        <ul class="list-unstyled">
+          {{#each shortlist in currentUser.shortlists}}
+            {{howsing-listing listing=shortlist.listing}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
