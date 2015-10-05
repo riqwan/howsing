@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :listings
   resources :listing_shortlists
+  resources :shortlists
 
   get '/users/user_logged_in', to: 'users#user_logged_in'
   post '/users/login', to: 'users#login', as: :user_login

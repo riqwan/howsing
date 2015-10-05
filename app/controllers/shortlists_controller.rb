@@ -2,7 +2,7 @@ class ShortlistsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_listing, only: [:index, :create]
   before_action :set_shortlist, only: [:show, :destroy]
-  before_action :ensure_shortlist_owner, only: [:create, :destroy]
+  before_action :ensure_shortlist_owner, only: [:destroy]
 
   def index
     @shortlists = @listing.try(:shortlists)
@@ -12,7 +12,7 @@ class ShortlistsController < ApplicationController
 
   def show
     if @shortlist.present?
-      render json: @shortlist
+      render json: @shortlist, scope: current_user
     else
       render json: { message: 'Shortlist doesnt exist' }, status: 402
     end
@@ -22,7 +22,7 @@ class ShortlistsController < ApplicationController
     @shortlist = Shortlist.new(listing: @listing, user: current_user)
 
     if @shortlist.save
-      render json: @shortlist
+      render json: @shortlist, scope: current_user
     else
       render json: { errors: @shortlist.errors }, status: 422
     end
@@ -30,7 +30,7 @@ class ShortlistsController < ApplicationController
 
   def destroy
     if @shortlist.destroy
-      render json: @shortlist
+      render json: @shortlist, scope: current_user
     else
       render json: { errors: @shortlist.errors }, status: 422
     end
@@ -39,7 +39,7 @@ class ShortlistsController < ApplicationController
   private
 
   def set_listing
-    @listing = Listing.find(params[:listing_id])
+    @listing = Listing.find(params[:shortlist][:listing_id])
   end
 
   def set_shortlist

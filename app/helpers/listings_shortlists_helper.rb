@@ -1,0 +1,2 @@
+module ListingsShortlistsHelper
+end

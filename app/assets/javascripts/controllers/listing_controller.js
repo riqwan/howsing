@@ -8,23 +8,23 @@ Howsing.ListingController = Ember.ObjectController.extend({
     },
 
     shortlistListing: function() {
-      var listing = this.get('model');
-      var listingShortlist = listing.get('shortlist');
+      var shortlist = this.get('model').get('shortlist');
+      var _this = this;
 
-      if (listingShortlist.get('checked')) {
-        debugger;
-        listingShortlist.destroyRecord().then(function(shortlist) {
+      if (shortlist.get('checked')) {
+        this.get('store').find('shortlist', shortlist.get('id')).then(function(rec) {
+          rec.destroyRecord();
           console.log('Record Destroyed.');
-          listing.reload();
+          _this.get('model').reload();
         });
       } else {
-        listingShortlist = this.store.createRecord('listingShortlist', {
-          listing: listing,
+        shortlist = this.store.createRecord('shortlist', {
+          listing: this.get('model'),
         });
 
-        listingShortlist.save().then(function() {
+        shortlist.save().then(function() {
           console.log('Record Created.');
-          listing.reload();
+          _this.get('model').reload();
         });
       }
     },
@@ -42,4 +42,8 @@ Howsing.ListingController = Ember.ObjectController.extend({
       });
     },
   },
+
+  isShortlisted: function() {
+    return this.get('model').get('shortlist').get('checked');
+  }.property('model.shortlist.checked'),
 });

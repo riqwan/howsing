@@ -2,16 +2,11 @@ class ListingSerializer < ActiveModel::Serializer
   embed :ids
 
   attributes :id, :area, :property_type, :bedrooms, :furnishing_state,
-             :bathrooms, :balconies, :build_up_area, :price, :deposit, :user_id,
-             :listing_shortlist_id
+             :bathrooms, :balconies, :build_up_area, :price, :deposit, :user_id
 
-  def is_shortlisted
-    Shortlist.find_by(listing_id: object.id, user_id: scope.id).present?
-  end
+  has_one :shortlist
 
-  def listing_shortlist_id
-    shortlist = scope.shortlists.find_by(listing_id: object.id)
-
-    shortlist.present? ? shortlist.id : nil
+  def shortlist
+    Shortlist.find_by(listing_id: object.id, user_id: scope.id)
   end
 end
