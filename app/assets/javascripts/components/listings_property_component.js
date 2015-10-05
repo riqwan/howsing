@@ -6,9 +6,9 @@ Howsing.ListingsPropertyComponent = Ember.Component.extend({
       this.toggleProperty('isEditing');
       this.sendAction('saveContent');
     },
-  },
 
-  click: function() {
-    this.toggleProperty('isEditing');
+    editMode: function() {
+      this.toggleProperty('isEditing');
+    },
   },
 });

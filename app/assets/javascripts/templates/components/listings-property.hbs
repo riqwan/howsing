@@ -3,6 +3,6 @@
   {{#if isEditing}}
     {{ input value=specValue class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
   {{else}}
-    <span>{{specValue}} {{unit}}</span>
+    <span {{action 'editMode' on='click'}}>{{specValue}} {{unit}}</span>
   {{/if}}
 </p>

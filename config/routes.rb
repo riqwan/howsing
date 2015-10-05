@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   root 'app#index'
   devise_for :users
 
+  get '/listings/send_email', to: 'listings#send_email'
+
   resources :listings
-  resources :shortlists
+  resources :listing_shortlists
 
   get '/users/user_logged_in', to: 'users#user_logged_in'
   post '/users/login', to: 'users#login', as: :user_login

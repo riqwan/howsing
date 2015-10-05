@@ -9,30 +9,37 @@ Howsing.ListingController = Ember.ObjectController.extend({
 
     shortlistListing: function() {
       var listing = this.get('model');
+      var listingShortlist = listing.get('shortlist');
 
-      if (listing.get('isShortlisted')) {
-        this.store.find('shortlist', {
-          user_id: this.currentUser.get('id'),
-          listing_id: listing.get('id'),
-        }).then(function(response) {
-          response.get('firstObject').destroyRecord().then(function() {
-            console.log('Record Destroyed.');
-          });
-
-          listing.set('isShortlisted', false);
+      if (listingShortlist.get('checked')) {
+        debugger;
+        listingShortlist.destroyRecord().then(function(shortlist) {
+          console.log('Record Destroyed.');
+          listing.reload();
         });
       } else {
-        shortlist = this.store.createRecord('shortlist', {
+        listingShortlist = this.store.createRecord('listingShortlist', {
           listing: listing,
-          user: this.currentUser,
         });
 
-        shortlist.save().then(function() {
+        listingShortlist.save().then(function() {
           console.log('Record Created.');
+          listing.reload();
         });
-
-        listing.set('isShortlisted', true);
       }
+    },
+
+    sendEmail: function() {
+      $.ajax({
+        url: '/listings/send_email',
+        success: function(response) {
+          console.log('email sent');
+        },
+
+        failure: function() {
+          console.log('Mail couldn\'t be sent');
+        },
+      });
     },
   },
 });

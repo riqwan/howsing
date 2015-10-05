@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:show, :update, :destroy]
+  before_action :set_listing, only: [:show, :update, :destroy, :send_email]
   before_action :ensure_landlord!, only: [:create, :update, :destroy]
 
   def index
@@ -43,6 +43,12 @@ class ListingsController < ApplicationController
     end
   end
 
+  def send_email
+    ListingMailer.contact(@listing, current_user).deliver_now
+
+    render json: { message: 'email sent successfully' }
+  end
+
   def listing_params
     params.require(:listing).permit(
       :user_id, :area, :property_type, :bedrooms, :furnishing_state,
@@ -59,6 +65,6 @@ class ListingsController < ApplicationController
   end
 
   def set_listing
-    @listing = Listing.find(params[:id])
+    @listing = Listing.find(14)
   end
 end
