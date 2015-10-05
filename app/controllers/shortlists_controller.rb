@@ -5,14 +5,12 @@ class ShortlistsController < ApplicationController
   before_action :ensure_shortlist_owner, only: [:create, :destroy]
 
   def index
-    @shortlists = @listing.shortlists
+    @shortlists = @listing.try(:shortlists)
 
     render json: @shortlists
   end
 
   def show
-    @shortlist = current_user.shortlists.find_by(id: params[:id])
-
     if @shortlist.present?
       render json: @shortlist
     else
@@ -41,7 +39,7 @@ class ShortlistsController < ApplicationController
   private
 
   def set_listing
-    @listing = current_user.listings.find_by(id: params[:shortlist][:listing_id])
+    @listing = Listing.find(params[:listing_id])
   end
 
   def set_shortlist

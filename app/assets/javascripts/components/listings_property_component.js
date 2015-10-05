@@ -1,4 +1,4 @@
-Howsing.PropertySpecComponent = Ember.Component.extend({
+Howsing.ListingsPropertyComponent = Ember.Component.extend({
   isEditing: false,
 
   actions: {

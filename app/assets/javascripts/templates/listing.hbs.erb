@@ -12,24 +12,26 @@
   <%= image_tag 'house', class: 'image-contained', height: 300 %>
 </div>
 <hr>
+<p>Listing by: {{model.user.email}}</p>
+<hr>
 <div class="listing-specifications">
   <div class="row">
     <div class="col-md-4">
-      {{property-spec specKey="Property Type" specValue=model.propertyType unit="" saveContent='saveContent'}}
-      {{property-spec specKey="Location" specValue=model.area unit="" saveContent='saveContent'}}
-      {{property-spec specKey="Furnishing" specValue=model.furnishingState unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Property Type" specValue=model.propertyType unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Location" specValue=model.area unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Furnishing" specValue=model.furnishingState unit="" saveContent='saveContent'}}
     </div>
 
     <div class="col-md-4">
-      {{property-spec specKey="Bedrooms:" specValue=model.bedrooms unit="" saveContent='saveContent'}}
-      {{property-spec specKey="Bathrooms:" specValue=model.bathrooms unit="" saveContent='saveContent'}}
-      {{property-spec specKey="Balconies" specValue=model.balconies unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Bedrooms" specValue=model.bedrooms unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Bathrooms" specValue=model.bathrooms unit="" saveContent='saveContent'}}
+      {{listings-property specKey="Balconies" specValue=model.balconies unit="" saveContent='saveContent'}}
     </div>
 
     <div class="col-md-4">
-      {{property-spec specKey="Rental" specValue=model.price unit="Rs" saveContent='saveContent'}}
-      {{property-spec specKey="Deposit" specValue=model.deposit unit="Rs" saveContent='saveContent'}}
-      {{property-spec specKey="Area" specValue=model.buildUpArea unit="sq.ft." saveContent='saveContent'}}
+      {{listings-property specKey="Rental" specValue=model.price unit="Rs" saveContent='saveContent'}}
+      {{listings-property specKey="Deposit" specValue=model.deposit unit="Rs" saveContent='saveContent'}}
+      {{listings-property specKey="Area" specValue=model.buildUpArea unit="sq.ft." saveContent='saveContent'}}
     </div>
   </div>
 </div>
