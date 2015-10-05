@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_listing, only: [:show, :update, :destroy]
   before_action :ensure_landlord!, only: [:create, :update, :destroy]
 
   def index
@@ -10,23 +10,37 @@ class ListingsController < ApplicationController
   end
 
   def show
-    render json: @listing
+    if @listing.present?
+      render json: @listing
+    else
+      render json: { message: 'Listing doesnt exist' }, status: 402
+    end
   end
 
   def create
-    @listing = current_user.listings.create(listing_params)
+    @listing = current_user.listings.new(listing_params)
 
-    render json: @listing
+    if @listing.save
+      render json: @listing
+    else
+      render json: { errors: @listing.errors }, status: 422
+    end
   end
 
   def update
-    render json: @listing.update_attributes(listing_params)
+    if @listing.update_attributes(listing_params)
+      render json: @listing
+    else
+      render json: { errors: @listing.errors }, status: 422
+    end
   end
 
   def destroy
-    @listing = @listing.destroy
-
-    render json: @listing
+    if @listing.destroy
+      render json: @listing
+    else
+      render json: { errors: @listing.errors }, status: 422
+    end
   end
 
   def listing_params
@@ -37,7 +51,11 @@ class ListingsController < ApplicationController
   end
 
   def ensure_landlord!
-    current_user.landlord?
+    listing_owner? && current_user.landlord?
+  end
+
+  def listing_owner?
+    current_user.listings.find_by(id: @listing.id).present?
   end
 
   def set_listing

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       sign_in @user
       render json: @user, status: :created
     else
-      render text: "invalid email or password", status: :unprocessable_entity
+      render text: 'invalid email or password', status: :unprocessable_entity
     end
   end
 
@@ -26,6 +26,10 @@ class UsersController < ApplicationController
   def show
     @user =  User.find(params[:id])
 
-    render json: @user
+    if current_user.id == @user.id
+      render json: @user
+    else
+      render json: { message: 'Unable to process this request' }
+    end
   end
 end

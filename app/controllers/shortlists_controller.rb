@@ -1,37 +1,54 @@
 class ShortlistsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_listing, only: [:index, :create]
+  before_action :set_shortlist, only: [:show, :destroy]
+  before_action :ensure_shortlist_owner, only: [:create, :destroy]
 
   def index
-    hash = {
-      listing_id: params[:listing_id]
-    }
-    if params[:user_id].blank?
-      @listing = Listing.find(params[:listing_id])
-      @shortlists = @listing.shortlists
-    else
-      hash[:user_id] = params[:user_id]
-      @shortlists = Shortlist.where(hash)
-    end
+    @shortlists = @listing.shortlists
 
     render json: @shortlists
   end
 
   def show
-    @shortlist = Shortlist.find(params[:id]);
+    @shortlist = current_user.shortlists.find_by(id: params[:id])
 
-    render json: @shortlist
+    if @shortlist.present?
+      render json: @shortlist
+    else
+      render json: { message: 'Shortlist doesnt exist' }, status: 402
+    end
   end
 
   def create
-    listing = Listing.find(params[:shortlist][:listing_id])
-    user = User.find(params[:shortlist][:user_id])
+    @shortlist = Shortlist.new(listing: @listing, user: current_user)
 
-    @shortlist = Shortlist.create(listing: listing, user: user)
-    render json: @shortlist
+    if @shortlist.save
+      render json: @shortlist
+    else
+      render json: { errors: @shortlist.errors }, status: 422
+    end
   end
 
   def destroy
-    @shortlist = Shortlist.find(params[:id]).destroy
-    render json: @shortlist
+    if @shortlist.destroy
+      render json: @shortlist
+    else
+      render json: { errors: @shortlist.errors }, status: 422
+    end
+  end
+
+  private
+
+  def set_listing
+    @listing = current_user.listings.find_by(id: params[:shortlist][:listing_id])
+  end
+
+  def set_shortlist
+    @shortlist = current_user.shortlists.find_by(id: params[:id])
+  end
+
+  def ensure_shortlist_owner
+    current_user.shortlists.find_by(id: @shortlist.id).present?
   end
 end
