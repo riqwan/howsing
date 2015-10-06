@@ -38,8 +38,12 @@ class ShortlistsController < ApplicationController
 
   private
 
+  def shortlist_params
+    params.require(:shortlist).permit(:listing_id)
+  end
+
   def set_listing
-    @listing = Listing.find(params[:shortlist][:listing_id])
+    @listing = Listing.find(shortlist_params[:listing_id])
   end
 
   def set_shortlist
