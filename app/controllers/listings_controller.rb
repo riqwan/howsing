@@ -65,6 +65,6 @@ class ListingsController < ApplicationController
   end
 
   def set_listing
-    @listing = Listing.find(14)
+    @listing = Listing.find(params[:id])
   end
 end

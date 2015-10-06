@@ -1,15 +1,18 @@
 class UserShortlistsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_shortlists
 
   def index
-    @shortlists = current_user.shortlists
-
     render json: @shortlists, each_serializer: UserShortlistSerializer
   end
 
   def show
-    @shortlist = current_user.shortlists.find_by(id: params[:id])
+    render json: @shortlists.find_by(id: params[:id]), serializer: UserShortlistSerializer
+  end
 
-    render json: @shortlist, serializer: UserShortlistSerializer
+  private
+
+  def set_shortlists
+    @shortlists = current_user.shortlists
   end
 end
