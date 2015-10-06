@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/listings/send_email', to: 'listings#send_email'
 
   resources :listings
-  resources :listing_shortlists
+  resources :user_shortlists
   resources :shortlists
 
   get '/users/user_logged_in', to: 'users#user_logged_in'

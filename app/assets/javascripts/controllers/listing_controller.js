@@ -15,12 +15,14 @@ Howsing.ListingController = Ember.ObjectController.extend({
         this.get('store').find('shortlist', shortlist.get('id')).then(function(rec) {
           rec.destroyRecord();
           _this.get('model').reload();
+          _this.currentUser.reload();
         });
       } else {
         shortlist = this.store.createRecord('shortlist', { listing: this.get('model') });
 
         shortlist.save().then(function() {
           _this.get('model').reload();
+          _this.currentUser.reload();
         });
       }
     },
