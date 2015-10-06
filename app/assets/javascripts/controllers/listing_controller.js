@@ -28,8 +28,11 @@ Howsing.ListingController = Ember.ObjectController.extend({
     },
 
     sendEmail: function() {
+      var listingId = this.get('model').get('id');
+
       $.ajax({
         url: '/listings/send_email',
+        data: { id: listingId },
         success: function(response) {
           console.log('email sent');
         },
