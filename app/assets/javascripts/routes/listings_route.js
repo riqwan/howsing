@@ -1,8 +1,6 @@
 Howsing.ListingsRoute = Ember.Route.extend({
   beforeModel: function() {
-    if (this.currentUser) {
-      console.log('logged in, no probs');
-    } else {
+    if (!this.currentUser) {
       this.transitionTo('login');
     }
   },

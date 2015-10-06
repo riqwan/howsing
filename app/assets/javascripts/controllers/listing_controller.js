@@ -2,8 +2,7 @@ Howsing.ListingController = Ember.ObjectController.extend({
   actions: {
     saveContent: function() {
       if (this.model.get('user').get('id') === this.currentUser.id) {
-        var listing = this.get('model');
-        listing.save();
+        this.get('model').save();
       }
     },
 
@@ -13,8 +12,9 @@ Howsing.ListingController = Ember.ObjectController.extend({
 
       if (shortlist.get('checked')) {
         this.get('store').find('shortlist', shortlist.get('id')).then(function(rec) {
-          rec.destroyRecord();
-          _this.get('model').reload();
+          rec.destroyRecord().then(function() {
+            _this.get('model').reload();
+          });
         });
       } else {
         shortlist = this.store.createRecord('shortlist', { listing: this.get('model') });
@@ -28,11 +28,9 @@ Howsing.ListingController = Ember.ObjectController.extend({
     },
 
     sendEmail: function() {
-      var listingId = this.get('model').get('id');
-
       $.ajax({
         url: '/listings/send_email',
-        data: { id: listingId },
+        data: { id: this.get('model').get('id') },
         success: function(response) {
           console.log('email sent');
         },

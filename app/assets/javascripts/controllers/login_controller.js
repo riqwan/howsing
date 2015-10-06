@@ -10,7 +10,6 @@ Howsing.LoginController = Ember.Controller.extend({
         data: data,
         success: function(response) {
           var user = _this.store.push('user', response.user);
-
           window.location = '';
         },
 
