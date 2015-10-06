@@ -4,6 +4,7 @@ Howsing.HowsingListingComponent = Ember.Component.extend({
 
     if (activeElement.length) {
       var topPosition = $(activeElement).position().top;
+
       $('.listings-container').animate({scrollTop: topPosition});
     }
   },

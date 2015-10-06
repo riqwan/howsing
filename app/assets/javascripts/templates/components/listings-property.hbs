@@ -1,7 +1,7 @@
 <p>
   <span class="text-muted">{{specKey}}:</span>
   {{#if isEditing}}
-    {{ input value=specValue class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
+    {{ view Howsing.FocusInputView value=specValue class="form-control" focus-out="saveContent" insert-newline="saveContent" }}
   {{else}}
     <span {{action 'editMode' on='click'}}>{{specValue}} {{unit}}</span>
   {{/if}}
