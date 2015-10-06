@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user =  User.find(user_params[:id])
+    @user =  User.find(params[:id])
 
     if current_user.id == @user.id
       render json: @user
@@ -34,6 +34,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:listing).permit(:username, :password)
+    params.require(:user).permit(:username, :password)
   end
 end
