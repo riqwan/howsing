@@ -1,6 +1,4 @@
-Howsing.ListingsTabView = Ember.View.extend({
-  templateName: 'listings_tab',
-
+Howsing.ListingsView = Ember.View.extend({
   didInsertElement: function() {
     return $('.nav-tabs .active').tab('show');
   },
