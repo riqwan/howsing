@@ -2,7 +2,6 @@ class ListingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_listing, only: [:update, :destroy, :send_email]
   before_action :ensure_landlord!, only: [:create, :update, :destroy]
-  before_action :ensure_listing_owner!, only: [:update, :destroy]
 
   def index
     @listings = Listing.all
@@ -61,10 +60,6 @@ class ListingsController < ApplicationController
 
   def ensure_landlord!
     current_user.landlord?
-  end
-
-  def ensure_listing_owner!
-    current_user.listings.find_by(id: @listing.id).present?
   end
 
   def set_listing
