@@ -46,7 +46,9 @@ class ListingsController < ApplicationController
   end
 
   def send_email
-    ListingMailer.contact(@listing, current_user).deliver_now
+    listing = Listing.find(params[:id])
+
+    ListingMailer.contact(listing, current_user).deliver_now
 
     render json: { message: 'email sent successfully' }
   end
