@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    if current_user.id == @user.id
+    if @user.present?
       render json: @user
     else
       render json: { message: 'Unable to process this request' }

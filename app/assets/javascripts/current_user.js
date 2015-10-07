@@ -15,6 +15,7 @@ Ember.Application.initializer({
           container.register('user:current', user, { instantiate: false, singleton: true });
 
           container.typeInjection('controller', 'currentUser', 'user:current');
+          container.typeInjection('component', 'currentUser', 'user:current');
           container.typeInjection('route', 'currentUser', 'user:current');
 
           console.log('current_user is ready');
