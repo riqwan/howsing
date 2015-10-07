@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
   def login
-    @user = User.find_for_database_authentication(email: user_params[:username])
+    @user = User.find_for_database_authentication(email: params[:username])
 
-    if @user && @user.valid_password?(user_params[:password])
+    if @user && @user.valid_password?(params[:password])
       sign_in @user
       render json: @user, status: :created
     else
@@ -31,9 +31,5 @@ class UsersController < ApplicationController
     else
       render json: { message: 'Unable to process this request' }
     end
-  end
-
-  def user_params
-    params.require(:user).permit(:username, :password)
   end
 end

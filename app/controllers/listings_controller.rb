@@ -59,7 +59,9 @@ class ListingsController < ApplicationController
   end
 
   def ensure_landlord!
-    current_user.landlord?
+    if !current_user.landlord?
+      render json: { message: 'User is not allowed to create a listing' }, status: 401
+    end
   end
 
   def set_listing
