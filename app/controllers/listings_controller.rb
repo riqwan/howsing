@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:show, :update, :destroy, :send_email]
+  before_action :set_listing, only: [:update, :destroy, :send_email]
   before_action :ensure_landlord!, only: [:create, :update, :destroy]
   before_action :ensure_listing_owner!, only: [:update, :destroy]
 
@@ -11,6 +11,8 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @listing = Listing.find(params[:id])
+
     if @listing.present?
       render json: @listing
     else
@@ -66,6 +68,6 @@ class ListingsController < ApplicationController
   end
 
   def set_listing
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find_by(id: params[:id])
   end
 end
