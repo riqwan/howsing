@@ -7,7 +7,9 @@ class UserShortlistsController < ApplicationController
   end
 
   def show
-    render json: @shortlists.find_by(id: params[:id]), serializer: UserShortlistSerializer
+    @shortlist = @shortlists.find_by(id: params[:id])
+
+    render json: @shortlist, serializer: UserShortlistSerializer
   end
 
   private

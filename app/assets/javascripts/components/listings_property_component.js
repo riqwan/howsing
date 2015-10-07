@@ -8,7 +8,14 @@ Howsing.ListingsPropertyComponent = Ember.Component.extend({
     },
 
     editMode: function() {
+      var _this = this;
       this.toggleProperty('isEditing');
+
+      if (this.get('isEditing') === true) {
+        Ember.run.schedule('afterRender', this, function() {
+          this.$('input').focus();
+        });
+      }
     },
   },
 });

@@ -2,7 +2,6 @@ class ShortlistsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_listing, only: [:index, :create]
   before_action :set_shortlist, only: [:show, :destroy]
-  before_action :ensure_shortlist_owner, only: [:destroy]
 
   def index
     @shortlists = @listing.try(:shortlists)
@@ -19,7 +18,7 @@ class ShortlistsController < ApplicationController
   end
 
   def create
-    @shortlist = Shortlist.new(listing: @listing, user: current_user)
+    @shortlist = current_user.shortlists.new(listing: @listing)
 
     if @shortlist.save
       render json: @shortlist, scope: current_user
@@ -48,9 +47,5 @@ class ShortlistsController < ApplicationController
 
   def set_shortlist
     @shortlist = current_user.shortlists.find_by(id: params[:id])
-  end
-
-  def ensure_shortlist_owner
-    current_user.shortlists.find_by(id: @shortlist.id).present?
   end
 end
