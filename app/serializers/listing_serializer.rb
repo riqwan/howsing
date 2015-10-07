@@ -7,6 +7,6 @@ class ListingSerializer < ActiveModel::Serializer
   has_one :shortlist
 
   def shortlist
-    Shortlist.find_by(listing_id: object.id, user_id: scope.id)
+    scope.shortlists.find_by(listing: object)
   end
 end
