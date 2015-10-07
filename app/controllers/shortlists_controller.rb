@@ -42,7 +42,7 @@ class ShortlistsController < ApplicationController
   end
 
   def set_listing
-    @listing = current_user.listings.find(shortlist_params[:listing_id])
+    @listing = Listing.find(shortlist_params[:listing_id])
   end
 
   def set_shortlist
